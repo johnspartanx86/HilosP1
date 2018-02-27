@@ -5,6 +5,9 @@
  */
 package sorttimes;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Arrays;
 import javax.swing.JTextField;
 /**
  *
@@ -15,21 +18,25 @@ public class SortHilo extends Thread{
     int Tipo; // 1 QuickSort, 2 Bubblesort, 3 shellSort
     int[] Arreglo;
     JTextField Caja;
+    JTextField CMostrar;
     
-    public SortHilo(int[] A, int Metodo, JTextField Control)
+    public SortHilo(int[] A, int Metodo, JTextField tTiempo, JTextField tMostrar)
     {
         Tipo = Metodo;
         Arreglo =A;
-        Caja =Control;
+        Caja =tTiempo;
+        CMostrar = tMostrar;
     }
     
     @Override
     public void run()
     {
+        Instant start = Instant.now();
         switch(Tipo)
         {
             case 3: //QuickSort
                 int sz = Arreglo.length;
+                
                 Sort.quicksort(Arreglo, 1, sz-1);
                 break;
             case 1: //BubbleSort
@@ -40,7 +47,10 @@ public class SortHilo extends Thread{
                 break;
                 
         }
-        System.out.print("\nListo tipo:" +Tipo);
-        Caja.setText("Se chingo el "+Tipo);
+        Instant end = Instant.now();
+        String time = Duration.between(start, end).toString();
+        Caja.setText("time");
+        CMostrar.setText(Arrays.toString(Arreglo));
+        
     }
 }
