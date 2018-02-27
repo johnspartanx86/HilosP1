@@ -5,6 +5,7 @@
  */
 package sorttimes;
 
+import java.awt.Color;
 import java.util.Random;
 import java.time.Instant;
 import java.time.Duration;
@@ -26,6 +27,7 @@ public class SortTimes {
 
         frmShow frm = new frmShow();
         frm.setVisible(true);
+        //frm.getContentPane().setBackground(Color.GREEN); 
         
     }
     }
