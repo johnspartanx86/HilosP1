@@ -19,7 +19,7 @@ public class frmShow extends javax.swing.JFrame {
     /**
      * Creates new form frmShow
      */
-    int sz =8000;
+    int sz =10000;
     int arr[] = new int[sz];
     int arr2[] = new int[sz];
     int arr3[] = new int[sz];
@@ -133,7 +133,7 @@ public class frmShow extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Sort All");
+        jButton2.setText("Sort Hilos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -190,7 +190,7 @@ public class frmShow extends javax.swing.JFrame {
                                 .addComponent(txtShell, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtBubble, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -211,19 +211,18 @@ public class frmShow extends javax.swing.JFrame {
                     .addComponent(btnBsort)
                     .addComponent(btnSSort)
                     .addComponent(jButton1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGenBubble)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
-                .addGap(41, 41, 41))
+                    .addComponent(btnGenBubble)
+                    .addComponent(jButton2))
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGenBubble)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -270,7 +269,7 @@ public class frmShow extends javax.swing.JFrame {
         
         for (int idx = 1; idx < sz; ++idx)
         {
-            arr[idx]=arr2[idx]=arr3[idx] = randomGenerator.nextInt(10000)+1;
+            arr[idx]=arr2[idx]=arr3[idx] = randomGenerator.nextInt(20000)+1;
             
         }
         txtBArray.setText(Arrays.toString(arr));
@@ -327,9 +326,9 @@ public class frmShow extends javax.swing.JFrame {
         //btnBsortActionPerformed(evt);
         //btnSSortActionPerformed(evt);
         //jButton1ActionPerformed(evt);
-        SortHilo Quick = new SortHilo(arr3,1,txtQuick);
-        SortHilo Bubble = new SortHilo(arr, 2, txtBubble);
-        SortHilo Shell = new SortHilo(arr2, 3, txtShell);
+        SortHilo Quick = new SortHilo(arr3,3,txtQuick,txtQlist);
+        SortHilo Bubble = new SortHilo(arr, 1, txtBubble,txtBArray);
+        SortHilo Shell = new SortHilo(arr2, 2, txtShell,txtSlist);
         
         Bubble.start();
         Shell.start();
