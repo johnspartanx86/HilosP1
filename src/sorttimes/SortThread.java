@@ -14,44 +14,43 @@ import javax.swing.JTextPane;
  *
  * @author macuser
  */
-public class SortHilo extends Thread{
+public class SortThread extends Thread{
     
-    int Tipo; // 1 QuickSort, 2 Bubblesort, 3 shellSort
-    int[] Arreglo;
-    JTextField Caja;
-    JTextPane CMostrar;
+    int Kind; // 1 QuickSort, 2 Bubblesort, 3 shellSort
+    int[] Array;
+    JTextField ShowBoxTime;
+    JTextPane ShowBoxArray;
     
-    public SortHilo(int[] A, int Metodo, JTextField tTiempo, JTextPane tMostrar)
+    public SortThread(int[] A, int Metodo, JTextField tTiempo, JTextPane tMostrar)
     {
-        Tipo = Metodo;
-        Arreglo =A;
-        Caja =tTiempo;
-        CMostrar = tMostrar;
+        Kind = Metodo;
+        Array =A;
+        ShowBoxTime =tTiempo;
+        ShowBoxArray = tMostrar;
     }
     
     @Override
     public void run()
     {
         Instant start = Instant.now();
-        switch(Tipo)
+        switch(Kind)
         {
             case 3: //QuickSort
-                int sz = Arreglo.length;
-                
-                Sort.quicksort(Arreglo, 1, sz-1);
+                int sz = Array.length;
+                Sort.quicksort(Array, 1, sz-1);
                 break;
             case 1: //BubbleSort
-                Sort.BubbleSort(Arreglo);
+                Sort.BubbleSort(Array);
                 break;
-            case 2: //ShellSh
-                Sort.shellSort(Arreglo);
+            case 2: //ShellSort
+                Sort.shellSort(Array);
                 break;
                 
         }
         Instant end = Instant.now();
         String time = Duration.between(start, end).toString();
-        Caja.setText(time);
-        CMostrar.setText(Arrays.toString(Arreglo));
+        ShowBoxTime.setText(time);
+        ShowBoxArray.setText(Arrays.toString(Array));
         
     }
 }

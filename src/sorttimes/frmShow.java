@@ -133,7 +133,7 @@ public class frmShow extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Sort Hilos");
+        jButton2.setText("Sort Threads");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -190,7 +190,7 @@ public class frmShow extends javax.swing.JFrame {
                                 .addComponent(txtShell, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtBubble, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -313,7 +313,7 @@ public class frmShow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The Quickbox is already sorted", "Attention: QuickBox Sorted", JOptionPane.INFORMATION_MESSAGE); 
         }else{
             Instant start3 = Instant.now();
-            Sort.quicksort(arr3, 1, sz-1);
+            //Sort.quicksort(arr3, 1, sz-1);
             Instant end3 = Instant.now();
             txtQlist.setText(Arrays.toString(arr3));
             txtQuick.setText(Duration.between(start3, end3).toString());
@@ -326,9 +326,9 @@ public class frmShow extends javax.swing.JFrame {
         //btnBsortActionPerformed(evt);
         //btnSSortActionPerformed(evt);
         //jButton1ActionPerformed(evt);
-        SortHilo Quick = new SortHilo(arr3,3,txtQuick,txtQlist);
-        SortHilo Bubble = new SortHilo(arr, 1, txtBubble,txtBArray);
-        SortHilo Shell = new SortHilo(arr2, 2, txtShell,txtSlist);
+        SortThread Quick = new SortThread(arr3,3,txtQuick,txtQlist);
+        SortThread Bubble = new SortThread(arr, 1, txtBubble,txtBArray);
+        SortThread Shell = new SortThread(arr2, 2, txtShell,txtSlist);
         
         Bubble.start();
         Shell.start();

@@ -5,6 +5,8 @@
  */
 
 package sorttimes;
+import java.util.Arrays;
+import javax.swing.JTextPane;
 /**
  *
  * @author juan
