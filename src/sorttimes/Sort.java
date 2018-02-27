@@ -9,7 +9,9 @@ package sorttimes;
  *
  * @author juan
  */
-public class Sort {
+public class Sort{
+  
+   
    public static void quicksort(int A[], int izq, int der) {
 
   int pivote=A[izq]; 

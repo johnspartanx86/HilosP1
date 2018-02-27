@@ -287,9 +287,18 @@ public class frmShow extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        btnBsortActionPerformed(evt);
-        btnSSortActionPerformed(evt);
-        jButton1ActionPerformed(evt);
+        //btnBsortActionPerformed(evt);
+        //btnSSortActionPerformed(evt);
+        //jButton1ActionPerformed(evt);
+        SortHilo Quick = new SortHilo(arr3,1,txtQuick);
+        SortHilo Bubble = new SortHilo(arr, 2, txtBubble);
+        SortHilo Shell = new SortHilo(arr2, 3, txtShell);
+        
+        Bubble.start();
+        Shell.start();
+        Quick.start();
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
