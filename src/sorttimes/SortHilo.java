@@ -50,7 +50,7 @@ public class SortHilo extends Thread{
         }
         Instant end = Instant.now();
         String time = Duration.between(start, end).toString();
-        Caja.setText("time");
+        Caja.setText(time);
         CMostrar.setText(Arrays.toString(Arreglo));
         
     }
