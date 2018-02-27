@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 /**
  *
  * @author macuser
@@ -18,9 +19,9 @@ public class SortHilo extends Thread{
     int Tipo; // 1 QuickSort, 2 Bubblesort, 3 shellSort
     int[] Arreglo;
     JTextField Caja;
-    JTextField CMostrar;
+    JTextPane CMostrar;
     
-    public SortHilo(int[] A, int Metodo, JTextField tTiempo, JTextField tMostrar)
+    public SortHilo(int[] A, int Metodo, JTextField tTiempo, JTextPane tMostrar)
     {
         Tipo = Metodo;
         Arreglo =A;
