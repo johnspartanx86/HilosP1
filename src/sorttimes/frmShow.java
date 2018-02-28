@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,12 +19,36 @@ public class frmShow extends javax.swing.JFrame {
     /**
      * Creates new form frmShow
      */
-    int sz =8000;
+    int sz =10000;
     int arr[] = new int[sz];
     int arr2[] = new int[sz];
     int arr3[] = new int[sz];
+    boolean sortedBubble = false;
+    boolean sortedShell = false;
+    boolean sortedQuick = false;
     public frmShow() {
         initComponents();
+        valida();
+    }
+    
+    private void valida(){
+        if (txtBArray.getText().equals("") || txtSlist.getText().equals("") || txtQlist.getText().equals("")) {
+            jButton2.setEnabled(false);
+            btnBsort.setEnabled(false);
+            btnSSort.setEnabled(false);
+            jButton1.setEnabled(false);
+            jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
+            jButton5.setEnabled(false);
+        } else {
+            jButton2.setEnabled(true);
+            btnBsort.setEnabled(true);
+            btnSSort.setEnabled(true);
+            jButton1.setEnabled(true);
+            jButton3.setEnabled(true);
+            jButton4.setEnabled(true);
+            jButton5.setEnabled(true);
+        }
     }
 
     /**
@@ -51,10 +76,18 @@ public class frmShow extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtSlist = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sort times");
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(51, 255, 204));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jLabel1.setText("BubbleSort:");
 
@@ -63,13 +96,15 @@ public class frmShow extends javax.swing.JFrame {
         jLabel3.setText("QuickSort:");
 
         btnGenBubble.setText("Generate");
+        btnGenBubble.setToolTipText("Click to fill the box with random numbers");
         btnGenBubble.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenBubbleActionPerformed(evt);
             }
         });
 
-        btnBsort.setText("Sort");
+        btnBsort.setText("Bubble Sort");
+        btnBsort.setToolTipText("Click to sort only the BubbleSort box");
         btnBsort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBsortActionPerformed(evt);
@@ -80,7 +115,8 @@ public class frmShow extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(txtQlist);
 
-        btnSSort.setText("Sort");
+        btnSSort.setText("Shell Sort");
+        btnSSort.setToolTipText("Click to sort only the ShellSort box");
         btnSSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSSortActionPerformed(evt);
@@ -89,10 +125,45 @@ public class frmShow extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(txtSlist);
 
-        jButton1.setText("Sort");
+        jButton1.setText("Quick Sort");
+        jButton1.setToolTipText("Click to sort only the QuickSort box");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Sort Threads");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Time:");
+
+        jLabel5.setText("Time:");
+
+        jLabel6.setText("Time:");
+
+        jButton3.setText("Reset Bubble Box");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Reset Shell Box");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Reset Quick Box");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -112,34 +183,47 @@ public class frmShow extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane3)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 228, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtBubble, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtShell, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtShell, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtBubble, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel3)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jScrollPane2))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtQuick, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtQuick, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGenBubble)
                     .addComponent(btnBsort)
                     .addComponent(btnSSort)
-                    .addComponent(jButton1))
-                .addGap(92, 92, 92))
+                    .addComponent(jButton1)
+                    .addComponent(btnGenBubble)
+                    .addComponent(jButton2))
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGenBubble)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGenBubble)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,68 +231,154 @@ public class frmShow extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBubble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtBubble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4)
+                                .addComponent(jButton3))
                             .addComponent(btnBsort))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtShell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSSort))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtShell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSSort)
+                                .addComponent(jLabel5))
+                            .addComponent(jButton4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtQuick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtQuick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
+                        .addComponent(jLabel6))
+                    .addComponent(jButton5))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenBubbleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenBubbleActionPerformed
-                    Random randomGenerator = new Random();
+        Random randomGenerator = new Random();
         
         for (int idx = 1; idx < sz; ++idx)
         {
-            arr[idx]=arr2[idx]=arr3[idx] = randomGenerator.nextInt(10000)+1;
+            arr[idx]=arr2[idx]=arr3[idx] = randomGenerator.nextInt(20000)+1;
             
         }
         txtBArray.setText(Arrays.toString(arr));
         txtSlist.setText(Arrays.toString(arr2));
         txtQlist.setText(Arrays.toString(arr3));
+        sortedBubble = false;
+        sortedShell = false;
+        sortedQuick = false;
+        valida();
     }//GEN-LAST:event_btnGenBubbleActionPerformed
 
     private void btnBsortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBsortActionPerformed
-        Instant start = Instant.now();
-        Sort.BubbleSort(arr);
-        Instant end = Instant.now();
-        String time = Duration.between(start, end).toString();
-        txtBubble.setText(time);
-        txtBArray.setText(Arrays.toString(arr));
+        if(sortedBubble){
+            JOptionPane.showMessageDialog(null, "The Bubblebox is already sorted", "Attention: BubbleBox Sorted", JOptionPane.INFORMATION_MESSAGE); 
+        }else{
+            Instant start = Instant.now();
+            Sort.BubbleSort(arr);
+            Instant end = Instant.now();
+            String time = Duration.between(start, end).toString();
+            txtBubble.setText(time);
+            txtBArray.setText(Arrays.toString(arr));
+            sortedBubble = true;
+        }
     }//GEN-LAST:event_btnBsortActionPerformed
 
     private void btnSSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSSortActionPerformed
-        Instant start2 = Instant.now();
-        Sort.shellSort(arr2);
-        Instant end2 = Instant.now();
-        txtSlist.setText(Arrays.toString(arr2));
-        txtShell.setText(Duration.between(start2, end2).toString());
+        if(sortedShell){
+            JOptionPane.showMessageDialog(null, "The Shellbox is already sorted", "Attention: ShellBox Sorted", JOptionPane.INFORMATION_MESSAGE); 
+        }else{
+            Instant start2 = Instant.now();
+            Sort.shellSort(arr2);
+            Instant end2 = Instant.now();
+            txtSlist.setText(Arrays.toString(arr2));
+            txtShell.setText(Duration.between(start2, end2).toString());
+            sortedShell = true;
+        }
     }//GEN-LAST:event_btnSSortActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                Instant start3 = Instant.now();
-        Sort.quicksort(arr3, 1, sz-1);
-        Instant end3 = Instant.now();
-        txtQlist.setText(Arrays.toString(arr3));
-        txtQuick.setText(Duration.between(start3, end3).toString());
+        if(sortedQuick){
+            JOptionPane.showMessageDialog(null, "The Quickbox is already sorted", "Attention: QuickBox Sorted", JOptionPane.INFORMATION_MESSAGE); 
+        }else{
+            Instant start3 = Instant.now();
+            //Sort.quicksort(arr3, 1, sz-1);
+            Instant end3 = Instant.now();
+            txtQlist.setText(Arrays.toString(arr3));
+            txtQuick.setText(Duration.between(start3, end3).toString());
+            sortedQuick = true;
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //btnBsortActionPerformed(evt);
+        //btnSSortActionPerformed(evt);
+        //jButton1ActionPerformed(evt);
+        SortThread Quick = new SortThread(arr3,3,txtQuick,txtQlist);
+        SortThread Bubble = new SortThread(arr, 1, txtBubble,txtBArray);
+        SortThread Shell = new SortThread(arr2, 2, txtShell,txtSlist);
+        
+        Bubble.start();
+        Shell.start();
+        Quick.start();
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        sortedBubble = false;
+        Random randomGenerator = new Random();
+        
+        for (int idx = 1; idx < sz; ++idx)
+        {
+            arr[idx]= randomGenerator.nextInt(10000)+1;
+            
+        }
+        txtBArray.setText(Arrays.toString(arr));
+        valida();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        sortedShell = false;
+        Random randomGenerator = new Random();
+        
+        for (int idx = 1; idx < sz; ++idx)
+        {
+            arr2[idx]= randomGenerator.nextInt(10000)+1;
+            
+        }
+        txtSlist.setText(Arrays.toString(arr2));
+        valida();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        sortedQuick = false;
+        Random randomGenerator = new Random();
+        
+        for (int idx = 1; idx < sz; ++idx)
+        {
+            arr3[idx]= randomGenerator.nextInt(10000)+1;
+            
+        }
+        txtQlist.setText(Arrays.toString(arr3));
+        valida();
+    }//GEN-LAST:event_jButton5ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -242,6 +412,7 @@ public class frmShow extends javax.swing.JFrame {
                 new frmShow().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -249,9 +420,16 @@ public class frmShow extends javax.swing.JFrame {
     private javax.swing.JButton btnGenBubble;
     private javax.swing.JButton btnSSort;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
