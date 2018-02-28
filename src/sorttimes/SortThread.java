@@ -11,8 +11,13 @@ import java.util.Arrays;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 /**
- *
- * @author macuser
+ * Runnable class to sort arrays of integers
+ * <p>
+ * It will use the method selected and print in the objects sent as parameters.
+ * 
+ * 
+ * 
+ * @author JuanChacon
  */
 public class SortThread extends Thread{
     
@@ -20,7 +25,13 @@ public class SortThread extends Thread{
     int[] Array;
     JTextField ShowBoxTime;
     JTextPane ShowBoxArray;
-    
+    /**
+     * 
+     * @param A Array to sort
+     * @param Metodo Selection of method, 1 for BubbleSort, 2 for ShellSort, 3 for QuickSort
+     * @param tTiempo JTextField were the time is going to display.
+     * @param tMostrar JTextPane were the sorted array is going to be displayed.
+     */
     public SortThread(int[] A, int Metodo, JTextField tTiempo, JTextPane tMostrar)
     {
         Kind = Metodo;
@@ -28,6 +39,8 @@ public class SortThread extends Thread{
         ShowBoxTime =tTiempo;
         ShowBoxArray = tMostrar;
     }
+    
+    
     
     @Override
     public void run()
@@ -37,7 +50,7 @@ public class SortThread extends Thread{
         {
             case 3: //QuickSort
                 int sz = Array.length;
-                Sort.quicksort(Array, 1, sz-1);
+                Sort.QuickSort(Array, 1, sz-1);
                 break;
             case 1: //BubbleSort
                 Sort.BubbleSort(Array);
