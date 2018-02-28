@@ -313,7 +313,7 @@ public class frmShow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The Quickbox is already sorted", "Attention: QuickBox Sorted", JOptionPane.INFORMATION_MESSAGE); 
         }else{
             Instant start3 = Instant.now();
-            //Sort.quicksort(arr3, 1, sz-1);
+            Sort.QuickSort(arr3, 1, sz-1);
             Instant end3 = Instant.now();
             txtQlist.setText(Arrays.toString(arr3));
             txtQuick.setText(Duration.between(start3, end3).toString());
