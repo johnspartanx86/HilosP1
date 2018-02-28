@@ -19,7 +19,7 @@ public class frmShow extends javax.swing.JFrame {
     /**
      * Creates new form frmShow
      */
-    int sz =10000;
+    int sz =20000;
     int arr[] = new int[sz];
     int arr2[] = new int[sz];
     int arr3[] = new int[sz];
