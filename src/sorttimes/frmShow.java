@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package sorttimes;
+import java.awt.Color;
+import java.lang.Thread.State;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -26,6 +29,7 @@ public class frmShow extends javax.swing.JFrame {
     boolean sortedBubble = false;
     boolean sortedShell = false;
     boolean sortedQuick = false;
+    boolean winner =false;
     public frmShow() {
         initComponents();
         valida();
@@ -278,9 +282,17 @@ public class frmShow extends javax.swing.JFrame {
         sortedBubble = false;
         sortedShell = false;
         sortedQuick = false;
+        ResetColor();
         valida();
     }//GEN-LAST:event_btnGenBubbleActionPerformed
 
+    
+    void ResetColor()
+    {
+        txtBubble.setBackground(Color.white);
+        txtQuick.setBackground(Color.white);
+        txtShell.setBackground(Color.white);
+    }
     private void btnBsortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBsortActionPerformed
         if(sortedBubble){
             JOptionPane.showMessageDialog(null, "The Bubblebox is already sorted", "Attention: BubbleBox Sorted", JOptionPane.INFORMATION_MESSAGE); 
@@ -321,19 +333,31 @@ public class frmShow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+   
+   public void Fastest(JTextField field, String txt)
+   {
+       
+       field.setText(txt);
+       if(!winner)
+       {
+           winner=true;
+           field.setBackground(Color.green);
+       }
+       else
+           field.setBackground(Color.white);
+   }
+   
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //btnBsortActionPerformed(evt);
-        //btnSSortActionPerformed(evt);
-        //jButton1ActionPerformed(evt);
-        SortThread Quick = new SortThread(arr3,3,txtQuick,txtQlist);
-        SortThread Bubble = new SortThread(arr, 1, txtBubble,txtBArray);
-        SortThread Shell = new SortThread(arr2, 2, txtShell,txtSlist);
+        
+        winner =false;
+        SortThread Quick = new SortThread(arr3,3,txtQuick,txtQlist, this);
+        SortThread Bubble = new SortThread(arr, 1, txtBubble,txtBArray, this);
+        SortThread Shell = new SortThread(arr2, 2, txtShell,txtSlist, this);
         
         Bubble.start();
         Shell.start();
         Quick.start();
-        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
