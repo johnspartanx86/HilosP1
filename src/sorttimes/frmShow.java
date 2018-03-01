@@ -269,7 +269,7 @@ public class frmShow extends javax.swing.JFrame {
         
         for (int idx = 1; idx < sz; ++idx)
         {
-            arr[idx]=arr2[idx]=arr3[idx] = randomGenerator.nextInt(20000)+1;
+            arr[idx]=arr2[idx]=arr3[idx] = randomGenerator.nextInt(sz)+1;
             
         }
         txtBArray.setText(Arrays.toString(arr));
@@ -344,7 +344,7 @@ public class frmShow extends javax.swing.JFrame {
         
         for (int idx = 1; idx < sz; ++idx)
         {
-            arr[idx]= randomGenerator.nextInt(10000)+1;
+            arr[idx]= randomGenerator.nextInt(sz)+1;
             
         }
         txtBArray.setText(Arrays.toString(arr));
@@ -358,7 +358,7 @@ public class frmShow extends javax.swing.JFrame {
         
         for (int idx = 1; idx < sz; ++idx)
         {
-            arr2[idx]= randomGenerator.nextInt(10000)+1;
+            arr2[idx]= randomGenerator.nextInt(sz)+1;
             
         }
         txtSlist.setText(Arrays.toString(arr2));
@@ -372,7 +372,7 @@ public class frmShow extends javax.swing.JFrame {
         
         for (int idx = 1; idx < sz; ++idx)
         {
-            arr3[idx]= randomGenerator.nextInt(10000)+1;
+            arr3[idx]= randomGenerator.nextInt(sz)+1;
             
         }
         txtQlist.setText(Arrays.toString(arr3));
